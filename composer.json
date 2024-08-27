@@ -1,0 +1,11 @@
+{
+    "name": "paradigma_tools/gfv",
+    "description": "Gallery for variations/ wordpress plugin",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "ParadigmaTools\\Gfv\\": "src/"
+        }
+    },
+    "require": {}
+}

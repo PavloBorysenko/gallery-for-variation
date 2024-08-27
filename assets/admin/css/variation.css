@@ -1,0 +1,31 @@
+.gfv-container .gfv-items-list li{
+    display: inline-block;
+    width: 100px;
+    position: relative;
+    margin-left: 5px;
+}
+.gfv-items-list li .gfv_item_title{
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background: #b9b9b994;
+}
+.gfv-items-list li img{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.gfv-items-list li .gfv_delete_item{   
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    display: block;
+    cursor: pointer;
+    color: red;
+}
+.gfv-items-list li.gfv_item_video img{
+    height: 130px;
+    margin-bottom: 0px;
+}

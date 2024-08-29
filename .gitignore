@@ -2,4 +2,5 @@ composer.phar
 /vendor/
 .vscode
 /tests/phpunit/wp-tests-config.php
-/tests/phpunit/includes
+/tests/phpunit/includes/
+.phpunit.result.cache

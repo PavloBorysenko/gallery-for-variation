@@ -1,17 +1,17 @@
 <?php
 /*
-  Plugin Name: Gallery for variations
-  Plugin URI: https://#
-  Description: Gallery for variations
-  Author: Pablo
-  Version: 1.0.0
-  Requires at least: WP 6.0.0
-  Tested up to: WP 6.6
-  Requires PHP: 8.1
-  Text Domain: gallery-for-variation
-  Domain Path: /languages
-  WC requires at least: 8.0
-  WC tested up to: 9.0
+	Plugin Name: Gallery for variations
+	Plugin URI: https://#
+	Description: Gallery for variations
+	Author: Pablo
+	Version: 1.0.0
+	Requires at least: WP 6.0.0
+	Tested up to: WP 6.6
+	Requires PHP: 8.1
+	Text Domain: gallery-for-variation
+	Domain Path: /languages
+	WC requires at least: 8.0
+	WC tested up to: 9.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,14 +21,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 require 'vendor/autoload.php';
 
 define( 'GFV_LINK', plugin_dir_url( __FILE__ ) );
-define( 'GFV_TEMPLATE_PATH', plugin_dir_path(__FILE__) . 'views' );
+define( 'GFV_TEMPLATE_PATH', plugin_dir_path( __FILE__ ) . 'views' );
 define( 'GFV_GALLERY_SLUG', 'gfv_gallery_items' );
 
-add_action('init', function(){
-	
-	new \ParadigmaTools\Gfv\Admin\Form( GFV_TEMPLATE_PATH, GFV_GALLERY_SLUG);
-	
-});
+add_action( 'init', 'gfv_init_plugin' );
+
+function gfv_init_plugin() {
+	new \ParadigmaTools\Gfv\Admin\Form( GFV_TEMPLATE_PATH, GFV_GALLERY_SLUG );
+}
 
 //Docs
 //new \ParadigmaTools\Gfv\Data\GalleryStorage('galerry_meta_field_key')

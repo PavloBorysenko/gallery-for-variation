@@ -15,11 +15,13 @@ $GLOBALS['wp_tests_options'] = array(
 		'gallery-for-variation/gallery-for-variation.php',
 		'woocommerce/woocommerce.php'
 	),
-	'wpsp_test' => true
+	'gfv_test' => true
 );
 
 // call test-lib's bootstrap.php
 require_once $test_lib_bootstrap_file;
+
+require_once 'tests/phpunit/util/class-util.php';
 
 $current_user = new WP_User( 1 );
 $current_user->set_role( 'administrator' );

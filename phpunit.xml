@@ -2,7 +2,7 @@
         colors="false" convertErrorsToExceptions="true"
         convertNoticesToExceptions="true" convertWarningsToExceptions="true">
         <testsuites>
-                <testsuite name="first">
+                <testsuite name="gallery for variation test">
                         <file>tests/phpunit/tests/test-gallery-for-variation.php</file>
                 </testsuite>
         </testsuites>

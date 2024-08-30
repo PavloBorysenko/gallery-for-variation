@@ -4,6 +4,7 @@
         <testsuites>
                 <testsuite name="gallery for variation test">
                         <file>tests/phpunit/tests/test-gallery-for-variation.php</file>
+                        <file>tests/phpunit/tests/test-Form.php</file>
                 </testsuite>
         </testsuites>
 </phpunit>

@@ -6,6 +6,7 @@
                         <file>tests/phpunit/tests/test-gallery-for-variation.php</file>
                         <file>tests/phpunit/tests/test-Form.php</file>
                         <file>tests/phpunit/tests/test-GalleryStorage.php</file>
+                        <file>tests/phpunit/tests/test-GalleryFabrica.php</file>
                 </testsuite>
         </testsuites>
 </phpunit>

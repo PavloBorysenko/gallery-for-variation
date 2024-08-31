@@ -1,17 +1,21 @@
 <?php
 
 class Test_Form extends WP_UnitTestCase {
-	var $form;
-	var $attachment_ids;
+	public $form;
+	public static $attachment_ids;
+
+	public $key;
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->form = new \ParadigmaTools\Gfv\Admin\Form( GFV_TEMPLATE_PATH, GFV_GALLERY_SLUG );
-		$this->attachment_ids[] = $this->factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.png', 0 );
-		$this->attachment_ids[] = $this->factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.jpg', 0 );
-		$this->attachment_ids[] = $this->factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/clip.mp4', 0 );
+		$this->key = GFV_GALLERY_SLUG;
+		$this->form = new \ParadigmaTools\Gfv\Admin\Form( GFV_TEMPLATE_PATH, $this->key );
 	}
-
+	public static function wpSetUpBeforeClass( $factory ) {
+		self::$attachment_ids[] = $factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.png', 0 );
+		self::$attachment_ids[] = $factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.jpg', 0 );
+		self::$attachment_ids[] = $factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/clip.mp4', 0 );
+	}
 	public function tearDown(): void {
 		parent::tearDown();
 		wp_deregister_script( 'gfv-admin' );
@@ -80,7 +84,7 @@ class Test_Form extends WP_UnitTestCase {
 	}
 	public function test_get_item_data() {
 		$post_id = $this->factory->post->create();
-		update_post_meta( $post_id, GFV_GALLERY_SLUG, $this->attachment_ids[0] );
+		update_post_meta( $post_id, $this->key, self::$attachment_ids[0] );
 		$gallery_items = $this->form->get_gallery_items( $post_id );
 		$actual_data = $this->form->get_gallery_item_data( array_shift( $gallery_items ), $post_id );
 
@@ -108,7 +112,7 @@ class Test_Form extends WP_UnitTestCase {
 	}
 	public function test_get_gallery_items() {
 		$post_id = $this->factory->post->create();
-		update_post_meta( $post_id, GFV_GALLERY_SLUG, $this->attachment_ids );
+		update_post_meta( $post_id, $this->key, self::$attachment_ids );
 		$gallery_items = $this->form->get_gallery_items( $post_id );
 		$this->assertIsArray( $gallery_items,
 			"The function get_gallery_items returns an invalid data type." );

@@ -2,15 +2,19 @@
 
 class Test_Form extends WP_UnitTestCase {
 	var $form;
+	var $attachment_ids;
 
 	public function setUp(): void {
 		parent::setUp();
 		$this->form = new \ParadigmaTools\Gfv\Admin\Form( GFV_TEMPLATE_PATH, GFV_GALLERY_SLUG );
+		$this->attachment_ids[] = $this->factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.png', 0 );
+		$this->attachment_ids[] = $this->factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.jpg', 0 );
+		$this->attachment_ids[] = $this->factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/clip.mp4', 0 );
 	}
 
 	public function tearDown(): void {
 		parent::tearDown();
-		wp_deregister_script( 'gfv-admi' );
+		wp_deregister_script( 'gfv-admin' );
 	}
 
 	public function test_form_draw_variation_page() {
@@ -55,7 +59,7 @@ class Test_Form extends WP_UnitTestCase {
 		$this->assertarrayHasKey( 'btn', $localized_data );
 	}
 
-	public function test_dofault_item_data() {
+	public function test_default_item_data() {
 		$expected_data = array(
 			'title' => '__TITLE__',
 			'id' => '__ITEM_ID__',
@@ -73,5 +77,46 @@ class Test_Form extends WP_UnitTestCase {
 		$actual_data = $this->form->get_gallery_item_data( null, 1 );
 		$this->assertEqualSets( $expected_data, $actual_data,
 			"The function generates incorrect data with variation_id." );
+	}
+	public function test_get_item_data() {
+		$post_id = $this->factory->post->create();
+		update_post_meta( $post_id, GFV_GALLERY_SLUG, $this->attachment_ids[0] );
+		$gallery_items = $this->form->get_gallery_items( $post_id );
+		$actual_data = $this->form->get_gallery_item_data( array_shift( $gallery_items ), $post_id );
+
+		$expected_filds = array(
+			'title',
+			'id',
+			'type',
+			'src',
+			'variation_id'
+		);
+		$actual_fields = array_keys( $actual_data );
+		$this->assertEqualSets( $expected_filds, $actual_fields,
+			"The function get_gallery_item_data does not generate all fields." );
+
+		$this->assertSame( $post_id, $actual_data['variation_id'],
+			"The function get_gallery_item_data does not assign the post ID correctly." );
+	}
+	public function test_get_empty_gallery_items() {
+		$post_id = $this->factory->post->create();
+		$gallery_items = $this->form->get_gallery_items( $post_id );
+		$this->assertIsArray( $gallery_items,
+			"The function get_gallery_items returns an invalid data type when meta is empty." );
+		$this->assertCount( 0, $gallery_items,
+			"The function get_gallery_items returns an invalid data(not empty array) when meta is empty." );
+	}
+	public function test_get_gallery_items() {
+		$post_id = $this->factory->post->create();
+		update_post_meta( $post_id, GFV_GALLERY_SLUG, $this->attachment_ids );
+		$gallery_items = $this->form->get_gallery_items( $post_id );
+		$this->assertIsArray( $gallery_items,
+			"The function get_gallery_items returns an invalid data type." );
+		$this->assertCount( 3, $gallery_items,
+			"the function get_gallery_items does not return all gallery items." );
+		foreach ( $gallery_items as $gallery_item ) {
+			$this->assertTrue( is_a( $gallery_item, 'ParadigmaTools\Gfv\Items\Abstract\Item' ),
+				"Gallery Item has an invalid data type." );
+		}
 	}
 }

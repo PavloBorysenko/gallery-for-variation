@@ -1,4 +1,7 @@
 <?php
+
+define( 'GFV_TEST_PATH', dirname( __FILE__ ) );
+
 require './vendor/yoast/phpunit-polyfills/phpunitpolyfills-autoload.php';
 
 // path to test lib bootstrap.php

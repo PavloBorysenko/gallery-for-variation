@@ -23,7 +23,7 @@ class Test_Form extends WP_UnitTestCase {
 		$this->assertTrue(
 			Util::has_action( 'woocommerce_variable_product_before_variations', $this->form,
 				'draw_gallery_template' ),
-			"The hook for rendering the template form on the variable product edit page is not registered" );
+			"The hook for rendering a template form on the variable product edit page is not registered" );
 	}
 	public function test_registration_scripts_styles() {
 		$this->form->enqueue_script();

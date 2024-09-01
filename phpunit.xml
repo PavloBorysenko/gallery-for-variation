@@ -1,5 +1,5 @@
 <phpunit bootstrap="tests/phpunit/bootstrap.php" backupGlobals="false"
-        colors="false" convertErrorsToExceptions="true"
+        colors="true" convertErrorsToExceptions="true"
         convertNoticesToExceptions="true" convertWarningsToExceptions="true">
         <testsuites>
                 <testsuite name="gallery for variation test">
@@ -8,6 +8,7 @@
                         <file>tests/phpunit/tests/test-GalleryStorage.php</file>
                         <file>tests/phpunit/tests/test-GalleryFabrica.php</file>
                         <file>tests/phpunit/tests/test-GalleryImage.php</file>
+                        <file>tests/phpunit/tests/test-GalleryVideo.php</file>
                 </testsuite>
         </testsuites>
 </phpunit>

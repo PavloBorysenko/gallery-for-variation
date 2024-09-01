@@ -13,6 +13,12 @@ class Test_GalleryFabrica extends WP_UnitTestCase {
 		self::$attachment_ids[] = $factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/wp-logo.jpg', 0 );
 		self::$attachment_ids[] = $factory->attachment->create_upload_object( GFV_TEST_PATH . '/files/clip.mp4', 0 );
 	}
+	public static function wpTearDownAfterClass() {
+		foreach ( self::$attachment_ids as $id ) {
+			wp_delete_attachment( $id );
+		}
+
+	}
 	public function tearDown(): void {
 		parent::tearDown();
 	}

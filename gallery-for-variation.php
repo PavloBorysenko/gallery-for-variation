@@ -26,7 +26,7 @@ define( 'GFV_GALLERY_SLUG', 'gfv_gallery_items' );
 
 add_action( 'init', 'gfv_init_plugin' );
 
-function gfv_init_plugin() {
+function gfv_init_plugin(): void {
 	new \ParadigmaTools\Gfv\Admin\Form( GFV_TEMPLATE_PATH, GFV_GALLERY_SLUG );
 }
 

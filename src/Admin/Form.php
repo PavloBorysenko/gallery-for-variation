@@ -78,12 +78,13 @@ class Form {
 	/**
 	 * Drawing the form.
 	 *
-	 * @param  int                  $loop variant number.
-	 * @param  array<string, string>                $variation_data data.
+	 * @param  int                   $loop variant number.
+	 * @param  array<string, string> $variation_data data.
 	 * @param  \WC_Product_Variation $variation  Variation object.
 	 * @return void
 	 */
 	public function draw_gallery_form( $loop, $variation_data, $variation ): void { // @phpstan-ignore class.notFound (woocommerce)
+
 		$variation_id = (int) $variation->ID; // @phpstan-ignore class.notFound (woocommerce)
 
 		$gallery_items = $this->get_gallery_items( $variation_id );

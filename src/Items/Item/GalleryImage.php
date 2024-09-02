@@ -20,7 +20,7 @@ class GalleryImage extends \ParadigmaTools\Gfv\Items\Abstract\Item {
 
 	/**
 	 * Gallery Item Type.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_type(): string {
@@ -29,7 +29,7 @@ class GalleryImage extends \ParadigmaTools\Gfv\Items\Abstract\Item {
 
 	/**
 	 * Link to get thumbnail.
-	 * 
+	 *
 	 * @return string
 	 */
 	public function get_icon_src(): string {

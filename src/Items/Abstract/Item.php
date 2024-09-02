@@ -5,6 +5,7 @@
  * @class   Item
  * @package ParadigmaTools\Gfv
  */
+
 namespace ParadigmaTools\Gfv\Items\Abstract;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,14 +18,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Item {
 
 	/**
-	 * __construct  
-	 * @param \WP_Post $post  attachment obj
+	 * __construct
+	 *
+	 * @param \WP_Post $post  attachment obj.
 	 */
 	public function __construct( private \WP_Post $post ) {
 	}
 
 	/**
-	 * original url.
+	 * Original url.
+	 *
 	 * @return string
 	 */
 	public function get_origin_src(): string {
@@ -32,16 +35,30 @@ abstract class Item {
 	}
 
 	/**
-	 * thumbnail.
+	 * Thumbnail.
+	 *
 	 * @return string
 	 */
 	abstract public function get_icon_src(): string;
+
+	/**
+	 * Summary of get_type.
+	 *
+	 * @return string
+	 */
 	abstract public function get_type(): string;
+
+	/**
+	 * Summary of get_title.
+	 *
+	 * @return string
+	 */
 	public function get_title(): string {
 		return $this->post->post_title;
 	}
 	/**
 	 * Summary of get_id
+	 *
 	 * @return int
 	 */
 	public function get_id(): int {
